@@ -8,7 +8,6 @@ A WhatsApp-based system for reporting accidents, tracking locations, and suggest
 - Receive accident reports via WhatsApp (text or voice).
 - Automatic location extraction (English & Urdu supported).
 - Save accident reports in a SQLite database.
-- View latest accident history for a location.
 - Suggest alternative routes using Google Maps.
 
 ---
@@ -28,7 +27,7 @@ A WhatsApp-based system for reporting accidents, tracking locations, and suggest
 2. The system extracts the accident location.
 3. Accident details are saved in the database.
 4. Users can request:
-   - Latest accident history
+   
    - Alternative routes to destinations
 
 ---
