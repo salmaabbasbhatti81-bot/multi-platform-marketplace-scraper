@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results for "{{ query }}"</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Search Results for "{{ query }}"</h1>
+
+<!-- HOUSING AUTHORITY INFO -->
+{% if housing_data_list %}
+<h2>Housing Authority Information</h2>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Founded</th>
+        <th>Coverage Area</th>
+        <th>Population</th>
+        <th>Total Houses</th>
+        <th>Major Cities</th>
+    </tr>
+    {% for h in housing_data_list %}
+    <tr>
+        <td>{{ h.name }}</td>
+        <td>{{ h.established }}</td>
+        <td>{{ h.areas }}</td>
+        <td>{{ h.population }}</td>
+        <td>{{ h.houses }}</td>
+        <td>{{ h.areas }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>
+{% endif %}
+
+<!-- OLX LISTINGS -->
+<h2>OLX Listings</h2>
+{% if olx_results %}
+<table border="1">
+    <tr><th>Title</th><th>Price</th><th>Link</th></tr>
+    {% for item in olx_results %}
+    <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.price }}</td>
+        <td><a href="{{ item.link }}" target="_blank">View</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No OLX results found.</p>
+{% endif %}
+
+<!-- FACEBOOK MARKETPLACE LISTINGS -->
+<h2>Facebook Marketplace Listings</h2>
+{% if fb_results %}
+<table border="1">
+    <tr><th>Title</th><th>Price</th><th>Link</th></tr>
+    {% for item in fb_results %}
+    <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.price }}</td>
+        <td><a href="{{ item.link }}" target="_blank">View</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No Facebook Marketplace results found.</p>
+{% endif %}
+
+<!-- GOOGLE REAL ESTATE SUMMARY -->
+<h2>Google Real Estate Summary</h2>
+{% if google_data %}
+<table border="1">
+    <tr>
+        <th>Society Name</th>
+        <th>Location</th>
+        <th>Population</th>
+        <th>Houses</th>
+        <th>Phases</th>
+        <th>Top Comments</th>
+    </tr>
+    {% for g in google_data %}
+    <tr>
+        <td>{{ g.name }}</td>
+        <td>{{ g.location }}</td>
+        <td>{{ g.population }}</td>
+        <td>{{ g.houses }}</td>
+        <td>{{ g.phases }}</td>
+        <td>
+            {% for c in g.comments %}
+            • {{ c }}<br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No Google real estate info found.</p>
+{% endif %}
+
+</body>
+</html>
